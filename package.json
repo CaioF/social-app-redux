@@ -31,16 +31,19 @@
   },
   "devDependencies": {
     "@types/node": "^13.11.1",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "nodemon": "^2.0.2"
   },
   "eslintConfig": {
     "env": {
-        "browser": true,
-        "node": true
+      "browser": true,
+      "node": true
     }
-},
+  },
   "scripts": {
     "start": "node server.js",
     "pretest": "eslint --ignore-path .gitignore .",
