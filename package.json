@@ -38,10 +38,11 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "nodemon -e js,hbs,mjs,json,scss server.js"
+    "test": "eslint --ignore-path .gitignore .",
+    "dev": "nodemon -e js,hbs,mjs,json,scss server.js"
   },
   "engines": {
-    "node": "13.x"
+    "node": "12.x"
   },
   "author": "",
   "license": "ISC"
