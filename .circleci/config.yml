@@ -1,50 +1,30 @@
-version: 2.0
+version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.4-node # primary container - where job steps are run
-      - image: circleci/postgres:9.4.12-alpine # services container
-    working_directory: ~/circleci-demo-workflows
-    steps:
-      - checkout
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-
-      # Database setup
-      - run: bundle exec rake db:create db:schema:load
-
-      - run:
-          name: Run tests
-          command: rake
-
-  deploy:
-    machine:
-        enabled: true
-    working_directory: ~/circleci-demo-workflows
-    environment:
-      HEROKU_APP: "social-app-redux" # define env var $HEROKU_APP
-    steps:
-      - checkout
-      - run:
-          name: Setup Heroku
-          command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
-
-      - run:
-          command: |
-            git push heroku sequential-branch-filter:master
-            heroku run rake db:migrate
-            sleep 5 # sleep for 5 seconds to wait for dynos
-            heroku restart
+orbs:
+  heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
 
 workflows:
-  version: 2
-  build-and-deploy:
+  heroku_deploy:
     jobs:
       - build
-      - deploy:
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
           requires:
             - build
           filters:
             branches:
               only: sequential-branch-filter
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4-node
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/circleci-demo-workflows
+    steps:
+      - checkout
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+      # Database setup
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Run tests
+          command: rake
