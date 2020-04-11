@@ -7,7 +7,6 @@ const index           = require('./routers')
 const path            = require('path')
 const db              = require('./database/database.js')
 
-
 // view engine
 hbs.registerPartials(path.join(__dirname, 'website/partials'));
 app.engine('hbs', hbs.__express);
