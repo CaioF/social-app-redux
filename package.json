@@ -47,15 +47,11 @@
   },
   "scripts": {
     "start": "node server.js",
-<<<<<<< HEAD
     "pretest": "eslint --ignore-path .gitignore .",
     "dev": "nodemon -e js,hbs,mjs,json,scss server.js"
-=======
-    "test": "nodemon -e js,hbs,mjs,json,scss server.js"
   },
   "engines": {
     "node": "13.x"
->>>>>>> d3cf40cc41fd444166ba38e165811cef45c1e43b
   },
   "author": "",
   "license": "ISC"
