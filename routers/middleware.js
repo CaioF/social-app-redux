@@ -9,17 +9,22 @@ const cookieParser = require("cookie-parser")
 const session      = require("express-session")
 const crypto       = require("crypto")
 
+const genId = (function* () {
+    let index = 0;
+    while(true)
+        yield index++;
+})();
+
+console.log(process.env.PORT)
 const limiter = new RateLimit({
-    windowMs: 15 * 60 * 1000,
+    windowMs: 50 * 1000,
     max: 100,
     delayMs: 0
 })
 
 router.use(cookieParser());
 router.use(session({
-    genid: function(req) {
-        return crypto.randomBytes(64).toString('base64').replace(/\//g,'_').replace(/\+/g,'-')
-    },
+    genid: req => genId.next().value,
     saveUninitialized: true,
     resave: true,
     secret: crypto.randomBytes(64).toString('base64').replace(/\//g,'_').replace(/\+/g,'-')

@@ -4,9 +4,6 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "express-rate-limit": "^5.1.1",
-    "express-session": "^1.17.0",
     "accepts": "^1.3.7",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -15,6 +12,10 @@
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "express-session": "^1.17.0",
     "handlebars": "^4.7.6",
     "helmet": "^3.22.0",
     "http-errors": "^1.7.3",
@@ -46,8 +47,15 @@
   },
   "scripts": {
     "start": "node server.js",
+<<<<<<< HEAD
     "pretest": "eslint --ignore-path .gitignore .",
     "dev": "nodemon -e js,hbs,mjs,json,scss server.js"
+=======
+    "test": "nodemon -e js,hbs,mjs,json,scss server.js"
+  },
+  "engines": {
+    "node": "13.x"
+>>>>>>> d3cf40cc41fd444166ba38e165811cef45c1e43b
   },
   "author": "",
   "license": "ISC"
