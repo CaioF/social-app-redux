@@ -63,7 +63,7 @@ class Instance {
     })(app.render);
   }
 
-};
+}
 
 // express 3.x template engine compliance
 async function middleware(filename, options, cb) {

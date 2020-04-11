@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const router     = Router()
-const bcrypt     = require("bcrypt")
+// const bcrypt     = require("bcrypt")
 
 router.post("/register", (request, response) => {
     let username = request.body.username;
@@ -18,7 +18,7 @@ router.post("/register", (request, response) => {
 router.post("/login", (request, response) => {
     let password = request.body.password;
     let email    = request.body.email;
-    console.log(password, email)
+    
     if (password && email) {
         response.json({success: true});
     } else {
