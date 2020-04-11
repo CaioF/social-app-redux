@@ -5,8 +5,13 @@ const middleware = require("./middleware")
 const files      = require("./files")
 const home       = require("./home")
 
+const api       = require("./api")
+
 // express middlewares
 router.use(middleware)
+
+// API
+router.use("/api", api)
 
 // Serve files dynamically
 router.use("/lib", files)
